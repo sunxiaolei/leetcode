@@ -1,5 +1,7 @@
 package sun.xiaolei.leetcode;
 
+import java.util.Arrays;
+
 /**
  * @author sun
  * @emil xiaoleisun92@gmail.com
@@ -13,4 +15,19 @@ package sun.xiaolei.leetcode;
  * 所以返回 [0, 1]
  */
 public class P1_two_sum {
+
+    public static void main(String[] args) {
+        System.out.println(Arrays.toString(twosum(new int[]{2, 7, 11, 15}, 9)));
+    }
+
+    public static int[] twosum(int[] arr, int target) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i + 1; j < arr.length; j++) {
+                if (arr[i] + arr[j] == target) {
+                    return new int[]{i, j};
+                }
+            }
+        }
+        return null;
+    }
 }
