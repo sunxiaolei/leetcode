@@ -1,7 +1,7 @@
 package sun.xiaolei.leetcode;
 
-import java.util.Arrays;
-import java.util.LinkedList;
+import sun.xiaolei.leetcode.t.ListNode;
+import sun.xiaolei.leetcode.t.Util;
 
 /**
  * @author sun
@@ -32,7 +32,7 @@ public class P2_add_two_numbers {
         int[] arr2 = {5};
 
 
-        ListNode ln3 = addTwoNumbers(arr2Node(arr1), arr2Node(arr2));
+        ListNode ln3 = addTwoNumbers(Util.arr2ListNode(arr1), Util.arr2ListNode(arr2));
         System.out.println(ln3.toString());
 
 
@@ -101,36 +101,5 @@ public class P2_add_two_numbers {
         return dummyHead.next;
     }
 
-    public static ListNode arr2Node(int[] arr) {
-        ListNode node = null;
-        for (int i = 0; i < arr.length; i++) {
-            if (node == null) {
-                node = new ListNode(arr[i]);
-            } else {
-                setValue(node, arr[i]);
-            }
-        }
-        return node;
-    }
 
-    public static class ListNode {
-        int val;
-        ListNode next;
-
-        ListNode(int x) {
-            val = x;
-        }
-
-        @Override
-        public String toString() {
-            String str = "[";
-            ListNode node = this;
-            while (node != null) {
-                str = str + node.val + ",";
-                node = node.next;
-            }
-            str = str + "]";
-            return str;
-        }
-    }
 }
