@@ -10,6 +10,7 @@ import sun.xiaolei.leetcode.P206_reverse_linked_list;
 public class Util {
 
     public static ListNode arr2ListNode(int[] arr) {
+        if (arr.length == 0) return null;
         ListNode node = new ListNode(0);
         ListNode temp = node;
         for (int i = 0; i < arr.length; i++) {

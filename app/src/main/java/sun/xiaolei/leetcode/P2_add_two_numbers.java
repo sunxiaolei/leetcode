@@ -19,8 +19,8 @@ public class P2_add_two_numbers {
 
     public static void main(String[] args) {
 
-//        int[] arr1 = {2,4,3};
-//        int[] arr2 = {5,6,4};
+        int[] arr1 = {2,4,3};
+        int[] arr2 = {5,6,4};
 
 //        int[] arr1 = {9, 9, 9, 9, 9, 9, 9, 9, 9, 9};
 //        int[] arr2 = {9, 9, 9, 9, 9, 9, 9, 9, 9, 9};
@@ -28,32 +28,30 @@ public class P2_add_two_numbers {
 //        int[] arr1 = {1, 8};
 //        int[] arr2 = {0};
 
-        int[] arr1 = {5};
-        int[] arr2 = {5};
+//        int[] arr1 = {5};
+//        int[] arr2 = {5};
 
 
-        ListNode ln3 = addTwoNumbers(Util.arr2ListNode(arr1), Util.arr2ListNode(arr2));
-        System.out.println(ln3.toString());
+        System.out.println(addTwoNumbers(Util.arr2ListNode(arr1), Util.arr2ListNode(arr2)).toString());
+        System.out.println(addTwoNumbersO(Util.arr2ListNode(arr1), Util.arr2ListNode(arr2)).toString());
 
 
     }
 
     public static ListNode addTwoNumbers(ListNode l1, ListNode l2) {
-        ListNode node = null;
+        ListNode node = new ListNode(0);
+        ListNode temp = node;
         boolean isAdd1 = false;//需要进位的情况
         while (l1 != null || l2 != null || isAdd1) {
             int a1 = l1 == null ? 0 : l1.val;
             int a2 = l2 == null ? 0 : l2.val;
             int t = isAdd1 ? 1 : 0;
-            int nodeVal = a1 + a2 + t >= 10 ? a1 + a2 + t - 10 : a1 + a2 + t;
-            isAdd1 = a1 + a2 + t >= 10;
-            System.out.println(nodeVal);
+            int sum = a1 + a2 + t;
+            int nodeVal = sum % 10;
+            isAdd1 = sum >= 10;
 
-            if (node == null) {
-                node = new ListNode(nodeVal);
-            } else {
-                setValue(node, nodeVal);
-            }
+            temp.next = new ListNode(nodeVal);
+            temp = temp.next;
 
             if (l1 != null) {
                 l1 = l1.next;
@@ -62,15 +60,7 @@ public class P2_add_two_numbers {
                 l2 = l2.next;
             }
         }
-        return node;
-    }
-
-    public static void setValue(ListNode node, int value) {
-        if (node.next == null) {
-            node.next = new ListNode(value);
-        } else {
-            setValue(node.next, value);
-        }
+        return node.next;
     }
 
     /**
