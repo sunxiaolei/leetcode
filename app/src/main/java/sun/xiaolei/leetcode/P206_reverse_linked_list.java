@@ -1,8 +1,5 @@
 package sun.xiaolei.leetcode;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import sun.xiaolei.leetcode.t.ListNode;
 import sun.xiaolei.leetcode.t.Util;
 
@@ -26,24 +23,30 @@ public class P206_reverse_linked_list {
         System.out.println(node2 == null ? null : node2.toString());
     }
 
+    /**
+     * 迭代
+     *
+     * @param head
+     * @return
+     */
     public static ListNode reverseList1(ListNode head) {
-        if (head == null) return null;
+        if (head == null || head.next == null) return head;
         ListNode node = new ListNode(0);
-        ListNode temp = head;
-        List<Integer> list = new ArrayList<>();
-        list.add(head.val);
-        while (temp.next != null) {
-            list.add(temp.next.val);
-            temp = temp.next;
-        }
-        temp = node;
-        for (int i = 0; i < list.size(); i++) {
-            temp.next = new ListNode(list.get(list.size() - 1 - i));
-            temp = temp.next;
+        while (head != null) {
+            ListNode temp = head.next;
+            head.next = node.next;
+            node.next = head;
+            head = temp;
         }
         return node.next;
     }
 
+    /**
+     * 递归
+     *
+     * @param head
+     * @return
+     */
     public static ListNode reverseList2(ListNode head) {
         if (head == null || head.next == null) return head;
         ListNode nodeNext = head.next;
